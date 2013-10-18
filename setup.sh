@@ -2,10 +2,10 @@
 
 stow bash
 mkdir -p ~/.bash
-git clone https://github.com/nojhan/liquidprompt.git ~/.bash/liquidprompt
+if [ ! -d "~/.bash/liquidprompt" ]; then git clone https://github.com/nojhan/liquidprompt.git ~/.bash/liquidprompt ; fi
 
 stow git
 
 stow vim
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+if [ ! -d "~/.vim/bundle/vundle" ]; then git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle ; fi
 echo "[vim] Todo: :BundleInstall"
