@@ -53,7 +53,7 @@ set nofoldenable        "dont fold by default
 
 "filetype plugin indent on
 
-call pathogen#infect()
+"call pathogen#infect()
 
 map <F9> :NERDTreeToggle<CR>
 let g:rehash256 = 1
