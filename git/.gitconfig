@@ -34,3 +34,5 @@
     insteadOf = "gh:"
 [push]
     default = simple
+[merge]
+    tool = vimdiff
