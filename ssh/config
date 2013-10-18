@@ -1,0 +1,18 @@
+ServerAliveInterval 10
+
+Host lilas
+    Hostname lilas.haxx.es
+    User Wiz
+Host tunnel
+    User wiz
+    HostName haxx.es
+    LocalForward 9906 127.0.0.1:3306
+
+Host sketchfab-local.com
+    IdentityFile ~/.ssh/vagrant
+    ForwardAgent yes
+Host fatvertex.com
+    ForwardAgent yes
+Host *.fatvertex.com
+    ForwardAgent yes
+
