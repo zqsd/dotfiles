@@ -6,25 +6,38 @@
 
 alias ls='ls --color=auto'
 
+COLOR_RESET="\[\033[0m\]"
 COLOR_BOLD="\[\033[1m\]"
+
 COLOR_RED="\[\033[31m\]"
 COLOR_GREEN="\[\033[32m\]"
 COLOR_YELLOW="\[\033[33m\]"
 COLOR_BLUE="\[\033[34m\]"
-COLOR_RESET="\[\033[0m\]"
+
+COLOR_BG_RED="\[\033[41m\]"
+COLOR_BG_GREEN="\[\033[42m\]"
+COLOR_BG_BROWN="\[\033[43m\]"
+COLOR_BG_BLUE="\[\033[44m\]"
+COLOR_BG_PURPLE="\[\033[45m\]"
+COLOR_BG_CYAN="\[\033[46m\]"
+COLOR_BG_LIGHTGRAY="\[\033[47m\]"
 
 
 PS1=""
 env|grep -e "^SSH_CLIENT=" > /dev/null
 if [ $? -eq 0 ]
 then
-    PS1="$COLOR_RESET$COLOR_BOLD@$COLOR_GREEN$(hostname)"
-fi
-
-if [ $(whoami) = "root" ]
-then
-    PS1="$COLOR_BOLD$COLOR_RED\u$PS1"
-    PS1="$COLOR_BOLD$COLOR_BLUE[$PS1$COLOR_BLUE]"
+    if [ $(whoami) = "root" ]
+    then
+        PS1="$COLOR_BOLD$COLOR_BLUE[$COLOR_RED$COLOR_BG_CYAN\u$COLOR_RESET$COLOR_BOLD@$COLOR_GREEN$(hostname)$COLOR_BLUE]"
+    else
+        PS1="$COLOR_BOLD$COLOR_BLUE[$COLOR_RED\u$COLOR_RESET$COLOR_BOLD@$COLOR_GREEN$(hostname)$COLOR_BLUE]"
+    fi
+else
+    if [ $(whoami) = "root" ]
+    then
+        PS1="$COLOR_BOLD$COLOR_BLUE[$COLOR_BG_CYAN$COLOR_RED\u$COLOR_RESET$COLOR_BOLD$COLOR_BLUE]"
+    fi
 fi
 PS1="$PS1$COLOR_BOLD$COLOR_YELLOW\$$COLOR_RESET "
 
