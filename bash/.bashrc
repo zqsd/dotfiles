@@ -6,42 +6,63 @@
 
 alias ls='ls --color=auto'
 
-COLOR_RESET="\[\033[0m\]"
-COLOR_BOLD="\[\033[1m\]"
-
-COLOR_RED="\[\033[31m\]"
-COLOR_GREEN="\[\033[32m\]"
-COLOR_YELLOW="\[\033[33m\]"
-COLOR_BLUE="\[\033[34m\]"
-
-COLOR_BG_RED="\[\033[41m\]"
-COLOR_BG_GREEN="\[\033[42m\]"
-COLOR_BG_BROWN="\[\033[43m\]"
-COLOR_BG_BLUE="\[\033[44m\]"
-COLOR_BG_PURPLE="\[\033[45m\]"
-COLOR_BG_CYAN="\[\033[46m\]"
-COLOR_BG_LIGHTGRAY="\[\033[47m\]"
 
 
-PS1=""
-env|grep -e "^SSH_CLIENT=" > /dev/null
-if [ $? -eq 0 ]
-then
-    if [ $(whoami) = "root" ]
-    then
-        PS1="$COLOR_BOLD$COLOR_BLUE[$COLOR_RED$COLOR_BG_CYAN\u$COLOR_RESET$COLOR_BOLD@$COLOR_GREEN\h$COLOR_RESET:$COLOR_BOLD\w$COLOR_BLUE]"
+
+export PROMPT_COMMAND=__prompt_command
+function __prompt_command() {
+    local EXIT="$?"
+    PS1=""
+    local RESET="\[\033[0m\]"
+    local BOLD="\[\033[1m\]"
+    local RED="\[\033[31m\]"
+    local GREEN="\[\033[32m\]"
+    local YELLOW="\[\033[33m\]"
+    local BLUE="\[\033[34m\]"
+    local PURPLE="\[\033[35m\]"
+    local CYAN="\[\033[36m\]"
+    local LIGHTGRAY="\[\033[37m\]"
+    local BG_RED="\[\033[41m\]"
+    local BG_GREEN="\[\033[42m\]"
+    local BG_BROWN="\[\033[43m\]"
+    local BG_BLUE="\[\033[44m\]"
+    local BG_PURPLE="\[\033[45m\]"
+    local BG_CYAN="\[\033[46m\]"
+    local BG_LIGHTGRAY="\[\033[47m\]"
+
+    git branch &>/dev/null
+    IS_GIT=$?
+
+    PS1+="$BOLD$BLUE["
+
+    env|grep -e "^SSH_CLIENT=" > /dev/null
+    if [ $? -eq 0 ]; then
+        # ssh
+        if [ ${UID} -eq 0 ]; then
+            PS1+="$BOLD$RED\u" # root
+        else
+            PS1+="$BOLD$YELLOW\u"
+        fi
+        PS1+="$RESET@$BOLD$GREEN\h$RESET:"
     else
-        PS1="$COLOR_BOLD$COLOR_BLUE[$COLOR_RED\u$COLOR_RESET$COLOR_BOLD@$COLOR_GREEN\h$COLOR_RESET:$COLOR_BOLD\w$COLOR_BLUE]"
+        # local
+        if [ ${UID} -eq 0 ]; then
+            PS1+="$BOLD$RED\u$RESET:" # root
+        fi
     fi
-else
-    if [ $(whoami) = "root" ]
-    then
-        PS1="$COLOR_BOLD$COLOR_BLUE[$COLOR_BG_CYAN$COLOR_RED\u$COLOR_RESET$COLOR_BOLD$COLOR_RESET:$COLOR_BOLD\w$COLOR_BLUE]"
+
+    PS1+="$RESET\w$BOLD$BLUE]"
+
+    if [ $IS_GIT -eq 0 ]; then
+        PS1+="$RESET($BOLD$CYAN$(git branch | grep ^* | sed s/\*\ //)$RESET)"
+    fi
+
+    if [ $EXIT != 0 ]; then
+        PS1+="$BOLD$RED\$$RESET " # last command result in error
     else
-        PS1="$COLOR_BOLD$COLOR_BLUE[$COLOR_BOLD$COLOR_RESET$COLOR_BOLD\w$COLOR_BLUE]"
+        PS1+="$BOLD$GREEN\$$RESET "
     fi
-fi
-PS1="$PS1$COLOR_BOLD$COLOR_YELLOW\$$COLOR_RESET "
+}
 
 export PATH="/home/wiz/.gem/ruby/2.0.0/bin:$PATH"
 export PATH="/home/wiz/lib/adt-bundle-linux-x86_64-20130729/sdk/platform-tools:/home/wiz/lib/android-ndk-r9:$PATH"
