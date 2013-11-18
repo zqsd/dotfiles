@@ -41,9 +41,9 @@ function __prompt_command() {
         if [ ${UID} -eq 0 ]; then
             PS1+="$BOLD$RED\u" # root
         else
-            PS1+="$BOLD$YELLOW\u"
+            PS1+="$BOLD$GREEN\u"
         fi
-        PS1+="$RESET@$BOLD$GREEN\h$RESET:"
+        PS1+="$RESET@$CYAN\h$RESET:"
     else
         # local
         if [ ${UID} -eq 0 ]; then
@@ -51,10 +51,10 @@ function __prompt_command() {
         fi
     fi
 
-    PS1+="$RESET\w$BOLD$BLUE]"
+    PS1+="$RESET$BOLD$LIGHTGRAY\w$BOLD$BLUE]"
 
     if [ $IS_GIT -eq 0 ]; then
-        PS1+="$RESET($BOLD$CYAN$(git branch | grep ^* | sed s/\*\ //)$RESET)"
+        PS1+="$RESET($BOLD$YELLOW$(git branch | grep ^* | sed s/\*\ //)$RESET)"
     fi
 
     if [ $EXIT != 0 ]; then
