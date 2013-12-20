@@ -5,9 +5,10 @@
 [ -z "$PS1" ] && return
 
 alias ls='ls --color=auto'
+alias ll='ls -lh --color=auto'
 
 
-
+. ~/.git-completion.bash
 
 export PROMPT_COMMAND=__prompt_command
 function __prompt_command() {
@@ -64,7 +65,7 @@ function __prompt_command() {
     fi
 }
 
-export PATH="/home/wiz/.gem/ruby/2.0.0/bin:$PATH"
+export PATH="/home/wiz/.gem/ruby/2.0.0/bin:/home/wiz/.gem/ruby/1.9.1/bin:$PATH"
 export PATH="/home/wiz/lib/adt-bundle-linux-x86_64-20130729/sdk/platform-tools:/home/wiz/lib/android-ndk-r9:$PATH"
 alias dutop='du -s ./* | sort -nr'
 complete -cf sudo # autocomplete on sudo
