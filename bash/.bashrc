@@ -58,9 +58,9 @@ function __prompt_command() {
     fi
 
     if [ $EXIT != 0 ]; then
-        PS1+="$BOLD$RED\$$RESET " # last command result in error
+        PS1+="$BOLD$RED☠$RESET " # last command result in error (💔, ☠, 💩)
     else
-        PS1+="$BOLD$GREEN\$$RESET "
+        PS1+="$BOLD$GREEN❤$RESET "
     fi
 }
 
