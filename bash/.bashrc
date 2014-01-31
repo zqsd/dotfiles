@@ -5,9 +5,10 @@
 [ -z "$PS1" ] && return
 
 alias ls='ls --color=auto'
+alias ll='ls -lh --color=auto'
 
 
-
+. ~/.git-completion.bash
 
 export PROMPT_COMMAND=__prompt_command
 function __prompt_command() {
@@ -41,9 +42,9 @@ function __prompt_command() {
         if [ ${UID} -eq 0 ]; then
             PS1+="$BOLD$RED\u" # root
         else
-            PS1+="$BOLD$YELLOW\u"
+            PS1+="$BOLD$GREEN\u"
         fi
-        PS1+="$RESET@$BOLD$GREEN\h$RESET:"
+        PS1+="$RESET@$CYAN\h$RESET:"
     else
         # local
         if [ ${UID} -eq 0 ]; then
@@ -51,10 +52,10 @@ function __prompt_command() {
         fi
     fi
 
-    PS1+="$RESET\w$BOLD$BLUE]"
+    PS1+="$RESET$BOLD$LIGHTGRAY\w$BOLD$BLUE]"
 
     if [ $IS_GIT -eq 0 ]; then
-        PS1+="$RESET($BOLD$CYAN$(git branch | grep ^* | sed s/\*\ //)$RESET)"
+        PS1+="$RESET($BOLD$YELLOW$(git branch | grep ^* | sed s/\*\ //)$RESET)"
     fi
 
     if [ $EXIT != 0 ]; then
@@ -64,7 +65,7 @@ function __prompt_command() {
     fi
 }
 
-export PATH="/home/wiz/.gem/ruby/2.0.0/bin:$PATH"
+export PATH="/home/wiz/.gem/ruby/2.0.0/bin:/home/wiz/.gem/ruby/1.9.1/bin:$PATH"
 export PATH="/home/wiz/lib/adt-bundle-linux-x86_64-20130729/sdk/platform-tools:/home/wiz/lib/android-ndk-r9:$PATH"
 alias dutop='du -s ./* | sort -nr'
 complete -cf sudo # autocomplete on sudo

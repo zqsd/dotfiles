@@ -15,8 +15,10 @@ set autochdir
 set wildmenu
 set wildignore=*.o,*~,*.pyc
 set cmdheight=2
-set relativenumber 
+"set relativenumber 
 set number
+:au FocusLost * :set number
+:au FocusGained * :set relativenumber
 
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
@@ -53,8 +55,6 @@ set nofoldenable        "dont fold by default
 
 "filetype plugin indent on
 
-"call pathogen#infect()
-
 map <F9> :NERDTreeToggle<CR>
 let g:rehash256 = 1
 set background=dark
@@ -73,6 +73,35 @@ endfun
 map ,r :call RangerChooser()<CR>
 
 let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': ['py', 'php', 'js'],
+                           \ 'active_filetypes': ['py', 'php', 'js', 'c', 'cpp', 'cc', 'h', 'hh', 'hpp'],
                            \ 'passive_filetypes': [] }
 
+execute pathogen#infect()
+
+let g:syntastic_javascript_checkers = ['jshint']
+"let g:syntastic_cpp_compiler = 'clang++'
+"let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_enable_signs = 1
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_no_include_search = 1
+if has('unix')
+    let g:syntastic_error_symbol = '✗'
+    let g:syntastic_style_error_symbol = '>'
+    let g:syntastic_warning_symbol = '!'
+    let g:syntastic_style_warning_symbol = '>'
+else
+    let g:syntastic_error_symbol = 'x'
+    let g:syntastic_style_error_symbol = '>'
+    let g:syntastic_warning_symbol = '!'
+    let g:syntastic_style_warning_symbol = '>'
+endif
+
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_map = '<c-p>'
