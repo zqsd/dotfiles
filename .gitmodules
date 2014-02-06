@@ -7,3 +7,9 @@
 [submodule "vim/.vim/bundle/ctrlp.vim"]
 	path = vim/.vim/bundle/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim.git
+[submodule "vim/.vim/bundle/distinguished"]
+	path = vim/.vim/bundle/distinguished
+	url = https://github.com/Lokaltog/vim-distinguished.git
+[submodule "vim-distinguished"]
+	path = vim-distinguished
+	url = https://github.com/Lokaltog/vim-distinguished

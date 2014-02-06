@@ -12,6 +12,7 @@ set showmatch
 set autoindent
 "set selectmode=mouse
 set autochdir
+set wildmode=longest,list,full
 set wildmenu
 set wildignore=*.o,*~,*.pyc
 set cmdheight=2
@@ -19,6 +20,8 @@ set cmdheight=2
 set number
 :au FocusLost * :set number
 :au FocusGained * :set relativenumber
+set t_Co=256
+colorscheme distinguished
 
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
