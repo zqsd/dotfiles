@@ -72,6 +72,13 @@ set background=dark
 
 nmap <F4> :w<CR>:make<CR>:cw<CR>
 
+"Reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
+" automatically reload vimrc when it's saved
+au BufWritePost .vimrc so ~/.vimrc
+
 
 fun! RangerChooser()
     exec "silent !ranger --choosefile=/tmp/chosenfile " . expand("%:p:h")
