@@ -16,18 +16,26 @@ set wildmode=longest,list,full
 set wildmenu
 set wildignore=*.o,*~,*.pyc
 set cmdheight=2
-"set relativenumber 
+"set relativenumber
 set number
 :au FocusLost * :set number
 :au FocusGained * :set relativenumber
 set t_Co=256
+
+:autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+
 colorscheme distinguished
+
+:highlight ExtraWhitespace ctermbg=red guibg=red
+:match ExtraWhitespace /\s\+$/
+
 
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
 set hlsearch
 set incsearch
+nnoremap <silent> <CR> :noh<CR>
 
 "set foldmethod=indent   "fold based on indent
 "set foldnestmax=10      "deepest fold is 10 levels
@@ -36,7 +44,7 @@ set nofoldenable        "dont fold by default
 "set fdm=manual
 "set fdc=1
 
-"function! JavaScriptFold() 
+"function! JavaScriptFold()
 "    setl foldmethod=syntax
 "    setl foldlevelstart=1
 "    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
@@ -81,12 +89,14 @@ let g:syntastic_mode_map = { 'mode': 'active',
 
 execute pathogen#infect()
 
-let g:syntastic_javascript_checkers = ['jshint']
 "let g:syntastic_cpp_compiler = 'clang++'
 "let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
+
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_jshint_conf="~/.jshintrc"
+
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_enable_signs = 1
@@ -108,3 +118,4 @@ endif
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
+
