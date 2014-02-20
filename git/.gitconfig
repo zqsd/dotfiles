@@ -33,6 +33,6 @@
 [url "git@github.com:"]
     insteadOf = "gh:"
 [push]
-    default = simple
+    default = current
 [merge]
     tool = vimdiff
