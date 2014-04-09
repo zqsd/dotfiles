@@ -80,8 +80,3 @@ alias diskusage="du -hs * | sort -h"
 alias mount_haxx="mkdir -p /tmp/haxx && sshfs haxx.es: /tmp/haxx"
 alias mount_phoenix="mkdir -p /tmp/phoenix && sshfs phoenix:/cygdrive /tmp/phoenix"
 
-if [ -d /home/wiz/.local/lib/python3.4/site-packages/powerline ]; then
-    export POWERLINE=/home/wiz/.local/lib/python3.4/site-packages/powerline
-elif [ -d /home/wiz/.local/lib/python2.7/site-packages/powerline ]; then
-    export POWERLINE=/home/wiz/.local/lib/python2.7/site-packages/powerline
-fi

@@ -15,3 +15,9 @@ do
     stow $i
 done
 source ~/.bashrc
+
+if [ -d /home/wiz/.local/lib/python3.4 ]; then
+    ln -s /home/wiz/.local/lib/python3.4 /home/wiz/.local/lib/python
+elif [ -d /home/wiz/.local/lib/python2.7 ]; then
+    ln -s /home/wiz/.local/lib/python2.7 /home/wiz/.local/lib/python
+fi

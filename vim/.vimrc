@@ -131,7 +131,7 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
 
 " powerline
-set rtp+=$POWERLINE/bindings/vim/
+set rtp+=~/.local/lib/python/site-packages/powerline/bindings/vim/
 set laststatus=2
 set t_Co=256
 
