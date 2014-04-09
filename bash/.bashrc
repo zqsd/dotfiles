@@ -7,6 +7,9 @@
 alias ls='ls --color=auto'
 alias ll='ls -lh --color=auto'
 
+if [ -d "$HOME/.local/bin" ]; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
 
 . ~/.git-completion.bash
 
