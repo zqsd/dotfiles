@@ -24,13 +24,12 @@ set t_Co=256
 syntax on
 set path=.,,**
 
-:autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
-colorscheme distinguished
+colorscheme wombat256mod
 
-:highlight ExtraWhitespace ctermbg=red guibg=red
-:match ExtraWhitespace /\s\+$/
-
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
@@ -38,6 +37,9 @@ set whichwrap+=<,>,h,l
 set hlsearch
 set incsearch
 nnoremap <silent> <CR> :noh<CR>
+
+" copy/paste
+vnoremap <C-c> "*y
 
 "set foldmethod=indent   "fold based on indent
 "set foldnestmax=10      "deepest fold is 10 levels
