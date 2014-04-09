@@ -21,6 +21,8 @@ set number
 :au FocusLost * :set number
 :au FocusGained * :set relativenumber
 set t_Co=256
+syntax on
+set path=.,,**
 
 :autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
