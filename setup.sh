@@ -14,3 +14,4 @@ do
     echo "stow $i"
     stow $i
 done
+source ~/.bashrc
