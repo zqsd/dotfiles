@@ -79,4 +79,6 @@ alias vim='vim -p '
 alias diskusage="du -hs * | sort -h"
 alias mount_haxx="mkdir -p /tmp/haxx && sshfs haxx.es: /tmp/haxx"
 alias mount_phoenix="mkdir -p /tmp/phoenix && sshfs phoenix:/cygdrive /tmp/phoenix"
+alias tmux="TERM=screen-256color-bce tmux"
+
 
