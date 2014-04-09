@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # powerline
 pip install --user git+git://github.com/Lokaltog/powerline
